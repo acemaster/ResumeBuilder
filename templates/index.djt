@@ -1,0 +1,118 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>{{profile.name}}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="#" class="image avatar"><img src="/{{profile.profilePicture}}" alt="" /></a>
+				<h1>Hi I am <strong>{{profile.name}}</strong>
+				</h1>
+				<h1>{{profile.description}}</h1>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h3>{{profile.quote}}</h3>
+						</header>
+						<ul class="actions">
+							<li><a style="width:100%;" href="{{profile.linkedIn}}" class="button"><i class="fa fa-linkedin-square" aria-hidden="true"></i>&nbsp&nbspLearn More about my Projects, Education and Work Experience</a></li>
+						</ul>
+					</section>
+					<!-- <section id="three">
+						<div class="skill-box">
+						  <h3>Skills</h3>
+						  <div class="skills-circle">
+						    <ul>
+						      <li data-percent="80"><span class="text">Python</span><span class="bar-circle-right"></span><span class="bar-circle-left"></span><span class="bar-circle-cover"></span><b></b></li>
+						      <li data-percent="75"><span class="text">PHP</span><span class="bar-circle-right"></span><span class="bar-circle-left"></span><span class="bar-circle-cover"></span><b></b></li>
+						      <li data-percent="80"><span class="text">C++</span><span class="bar-circle-right"></span><span class="bar-circle-left"></span><span class="bar-circle-cover"></span><b></b></li>
+						      <li data-percent="85"><span class="text">C</span><span class="bar-circle-right"></span><span class="bar-circle-left"></span><span class="bar-circle-cover"></span><b></b></li>
+						      <li data-percent="70"><span class="text">JAVA</span><span class="bar-circle-right"></span><span class="bar-circle-left"></span><span class="bar-circle-cover"></span><b></b></li>
+						      <li data-percent="75"><span class="text">JS</span><span class="bar-circle-right"></span><span class="bar-circle-left"></span><span class="bar-circle-cover"></span><b></b></li>
+						      <li data-percent="85"><span class="text">HTML,CSS</span><span class="bar-circle-right"></span><span class="bar-circle-left"></span><span class="bar-circle-cover"></span><b></b></li>
+						      <li data-percent="45"><span class="text">Ruby</span><span class="bar-circle-right"></span><span class="bar-circle-left"></span><span class="bar-circle-cover"></span><b></b></li>
+						    </ul>
+						  </div>
+						</div>
+
+					</section> -->
+					{% for sectionTitle,sectionValues in sections.items %}
+					<section id="sectionTitle">
+						<h2><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp{{sectionTitle}}</h2>
+						<div class="row">
+						{% for section in sectionValues %}
+								<article class="work-item">
+									<h3>{{section.subtitle}}</h3>
+									{% autoescape off %}
+                                		<p>{{section.content}}</p>
+                        			{% endautoescape %}
+								</article>
+							{% if forloop.counter|divisibleby:2%}
+								</div>
+							{%endif%}
+						{%endfor%}
+					</section>
+					{%endfor%}
+					<!-- Three -->
+					<section id="three">
+						<h2>Get In Touch</h2>
+						<p>Want to contact me? Just type in your message here</p>
+						<div class="row">
+							<div class="8u 12u$(small)">
+								<form method="POST" action="http://formspree.io/{{profile.emailId}}">
+								  <div class="12u$"><input type="email" name="email" placeholder="Your email"></div>
+								  <div class="12u$"><textarea name="message" placeholder="Your message"></textarea></div>
+								  <ul class="actions">
+								  	<li><input type="submit" value="Send Message" /></li>
+								  </ul>
+								</form>
+							</div>
+							<div class="4u$ 12u$(small)">
+								<ul class="labeled-icons">
+									<li>
+										<h3 class="icon fa-envelope-o"><span class="label">Email</span></h3>
+										<a href="#">{{profile.emailId}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="{{profile.twitter}}" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="{{profile.github}}" class="icon fa-github"><span class="label">Github</span></a></li>
+					<li><a href="mailto:{{profile.email}}" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+				</ul>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.poptrox.min.js' %}"></script>
+			<script src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>
